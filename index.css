@@ -1,0 +1,700 @@
+/* =========================================
+   1. المتغيرات الأساسية (The Root)
+   ========================================= */
+:root {
+  /* تدرج كحلي غامق جداً للصف العلوي */
+  --primary-bg-dark: linear-gradient(to bottom, #041427, #010811); 
+  
+  /* اللون الأزرق البترولي (نفس درجة الصورة بالظبط) */
+  --secondary-bg-blue: linear-gradient(to bottom, #005a8d 0%, #00456d 100%); 
+  
+  /* تدرجات اللوجو والذهبي */
+  --logo-cyan-grad: linear-gradient(to right, #4db5ff, #b2e2ff);
+  --gold-accent-grad: linear-gradient(to right, #c0a058, #e9d5a3);
+  
+  /* ألوان ثابتة للتفاصيل */
+  --gold-accent: #c0a058; 
+  --text-white: #ffffff;
+  --text-muted: rgba(255,255,255,0.7);
+}
+
+/* =========================================
+   2. التنسيقات العامة
+   ========================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif; /* خط أنعم بكتير */
+}
+
+header {
+  /* 1. تحديد العرض */
+  width: 80%;
+  max-width: 1200px;
+  
+  /* 2. التوسط */
+  margin: 50px auto;
+  
+  /* 3. الحل السحري: نسبة العرض للطول */
+  /* بما إن الصور الناتجة عن Gemini غالباً بتكون مربعة 1/1 أو مستطيلة 16/9 */
+  aspect-ratio: 16 / 9; /* لو الصورة عريضة جرب 16/9، لو مربعة خليها 1/1 */
+
+  /* 4. التعامل مع الصورة */
+  background-image: url(Gemini_Generated_Image_q86ft6q86ft6q86f.png);
+  background-size: cover; /* cover هنا هتخلي الصورة تملأ المربع بالمللي */
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  /* 5. اللمسات الجمالية */
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  /* شلنا الـ min-height عشان ميبوظش المقاس */
+}
+
+.goc-main-nav {
+  width: 100%;
+  direction: rtl; /* الاتجاه العربي */
+}
+
+/* =========================================
+   3. الصف العلوي (اللوجو والبروفايل)
+   ========================================= */
+.top-row {
+  background: var(--primary-bg-dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  height: 50px;
+}
+
+.logo-text {
+  background: var(--logo-cyan-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.user-meta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile-block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold-accent);
+  font-size: 14px;
+}
+
+.notif-block {
+  position: relative;
+  color: var(--gold-accent);
+  cursor: pointer;
+}
+
+.notif-badge {
+  position: absolute;
+  top: -5px;
+  left: 12px;
+  background-color: #ff4d4d;
+  color: white;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: bold;
+}
+
+.logout-btn {
+  background: transparent;
+  border: 1px solid rgba(192, 160, 88, 0.5);
+  color: var(--gold-accent);
+  padding: 4px 15px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: var(--gold-accent-grad);
+  color: #000;
+  border-color: transparent;
+}
+
+/* =========================================
+   4. الصف السفلي (المنيو المدرج)
+   ========================================= */
+.menu-row {
+  background: var(--secondary-bg-blue); /* تطبيق تدرج الصورة */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  height: 45px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+
+.menu-items-left {
+  display: flex;
+  height: 100%;
+}
+
+.menu-item {
+  color: var(--text-white);
+  text-decoration: none;
+  font-size: 14px;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.3s;
+}
+
+.menu-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.menu-item.active {
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.menu-item.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gold-accent-grad);
+}
+
+.welcome-text-right {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-style: italic;
+  text-decoration: none;
+   border-left: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.3s;
+  background-color: #c0a058;
+  padding: 10px;
+  border-radius: 10px;
+ 
+}
+
+/* =========================================
+   5. العناصر الإضافية (Slider & Text)
+   ========================================= */
+h1.goc {
+  color: goldenrod;
+  font-size: 8vh;
+  text-shadow: 2px 2px 10px black;
+  margin: 40px 190px;
+}
+
+.slider {
+  width: 700px;
+  height: 320px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 12px;
+  border: 4px solid var(--gold-accent);
+  margin: 20px auto; /* توسيط تلقائي */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  margin-left: 780px;
+  
+}
+
+.slider img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+
+  animation: slide 9s infinite ease-in-out;
+}
+
+
+
+h1.welcom {
+  color: white;
+  text-shadow: 0 0 10px var(--gold-accent);
+  text-align: center;
+  margin-top: 30px;
+}
+.before img{
+
+width: 20%;
+height: 40%;
+
+}
+.before{
+transform: translate(-300px, -300px);
+padding: 10px 10px;
+
+
+}
+body {
+  /* إضافة طبقة سوداء شفافة فوق الصورة */
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+    url(54db1301-f713-468c-93d4-8129bc9d230c.jfif);
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+.slider {
+    /* 1. التحكم في العرض */
+    width: 45%;           /* خليه 80% عشان يبقى مستطيل عريض */
+    max-width: 800px;     /* أقصى عرض ليه */
+  height: 35%;
+    /* 2. السر في المستطيل: نسبة 16 لـ 9 */
+    aspect-ratio: 16 / 5; /* الرقم ده هيخليه مستطيل "Banner" شيك جداً */
+    
+    overflow: hidden;
+    position: relative;
+    border-radius: 12px;
+    border: 4px solid var(--gold-accent);
+    margin: 40px auto;    /* توسيط تلقائي */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    
+    /* إلغاء الـ margin-left والـ transform اليدوي عشان نوسطه صح */
+    margin-left:615px; 
+   
+    transform: translate(0px , 40px);
+}
+
+.slider img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    /* 3. الخاصية دي أهم حاجة: بتخلي الصورة تملأ المستطيل وتتقص بذكاء */
+    object-fit: cover; 
+    object-position: center;
+    
+    opacity: 0;
+    animation: slide 9s infinite ease-in-out;
+}
+
+.slider img:nth-child(1) { animation-delay: 0s; }
+.slider img:nth-child(2) { animation-delay: 3s; }
+.slider img:nth-child(3) { animation-delay: 6s; }
+
+@keyframes slide {
+  0% { opacity: 0; transform: scale(1.05); }
+  10% { opacity: 1; transform: scale(1); }
+  33% { opacity: 1; }
+  43% { opacity: 0; }
+  100% { opacity: 0; }
+}
+/* =========================================
+   تنسيق قسم (About) - الهيدر والترحيب
+   ========================================= */
+.about {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-white);
+    direction: rtl;
+}
+
+.about h1:first-child {
+    font-size: 80px;
+    background: var(--logo-cyan-grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+    margin-bottom: -10px;
+    letter-spacing: 5px;
+}
+
+.about h1:nth-child(2) {
+    font-size: 28px;
+    color: var(--gold-accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+
+.about h1:nth-child(3) {
+    font-size: 22px;
+    color: var(--text-muted);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* =========================================
+   تنسيق كارت العرض (Offer Container) - شياكة وبريميوم
+   ========================================= */
+.offer-container {
+    background: rgba(4, 20, 39, 0.8); /* خلفية غامقة شفافة */
+    backdrop-filter: blur(10px); /* تأثير زجاجي مودرن */
+    border: 2px solid var(--gold-accent);
+    border-radius: 25px;
+    padding: 40px;
+    width: 90%;
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    position: relative;
+    overflow: hidden;
+    direction: rtl;
+}
+
+/* تأثير لمعة خفيفة ورا الكارت */
+.offer-container::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(192, 160, 88, 0.1) 0%, transparent 70%);
+}
+
+.offer-title {
+    color: var(--text-white);
+    font-size: 32px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.offer-surprise {
+    color: #4db5ff; /* لون لبني من اللوجو */
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.free-badge {
+    background: #ff4d4d;
+    color: white;
+    padding: 2px 12px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 900;
+    display: inline-block;
+    animation: pulse 1.5s infinite;
+}
+
+.offer-summary {
+    color: var(--gold-accent);
+    font-size: 20px;
+    margin: 20px 0;
+    font-weight: bold;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 15px;
+}
+
+/* زر الاشتراك - CTA */
+.cta-button {
+    background: var(--gold-accent-grad);
+    color: #000;
+    border: none;
+    padding: 15px 40px;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 5px 20px rgba(192, 160, 88, 0.4);
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(192, 160, 88, 0.6);
+}
+
+/* =========================================
+   الأنيميشن
+   ========================================= */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* الهيدر اللي تحت */
+h1:last-of-type {
+    text-align: center;
+    color: var(--logo-cyan-grad);
+    font-size: 20px;
+    margin-top: 30px;
+    background: var(--logo-cyan-grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.9;
+}
+.press{
+
+padding: 10px;
+border-radius: 5px;
+color: cyan;
+width: 20%;
+margin-left: auto;
+margin-right: auto;
+
+}
+.press a{
+text-decoration: none;
+color: goldenrod;
+
+
+}
+.train{
+background: linear-gradient(goldenrod);
+width: 30%;
+margin-left: auto;
+margin-right: auto;
+border-radius: 5px;
+border: #000 1px;
+box-shadow: #041427 40px;
+
+
+
+}
+.seemore a{
+text-decoration: none;
+color: white;
+
+}
+.seemore{
+background-color: goldenrod;
+width: 10%;
+margin-left: auto;
+margin-right: auto;
+border-radius: 20px;
+border: #000 1px;
+box-shadow: #041427 10px;
+}
+.videoscontainer video{
+width: 40%;
+height: 400px;
+padding: 30px 30px;
+
+
+}
+.videoscontainer{
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+
+
+
+}
+.from{
+color: red;
+
+
+}
+i{
+width: 20%;
+padding: 10px;
+cursor: pointer;
+
+}
+.cgemy{
+color: goldenrod;
+
+
+}
+.cta-button {
+  position: relative; /* أو fixed لو عايز ثابت */
+  z-index: 1000;      /* أهم حاجة يكون فوق أي حاجة */
+  cursor: pointer;
+}
+.offer{
+ box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+background-color: red;
+
+
+
+}
+.offer h1 {
+  color: red; /* غير أي لون تحبه */
+}
+.offer i{
+font-size: 50px; /* حجم الأيقونة */
+
+
+}
+.offer img{
+width: 50%;
+filter: blur(5px);
+display: block;  
+margin-left: auto;
+margin-right: auto;
+
+
+}
+.cgemycontainer{
+background-color: rgb(128, 128, 128);
+
+
+
+}
+@media (max-width: 1024px) {
+    .slider {
+        width: 80%;           /* نكبر العرض شوية عشان الشاشة أصغر */
+        margin-left: auto;    /* نلغي الـ 615px ونخليه في النص */
+        margin-right: auto;
+        transform: translate(0, 20px); /* تقليل الإزاحة لأسفل */
+        aspect-ratio: 16 / 7;  /* نخليه أطول شوية عشان الصور تبان */
+    }
+}
+
+/* للشاشات الصغيرة (مثل الموبايل) */
+@media (max-width: 768px) {
+    .slider {
+        width: 50%;           /* ياخد معظم عرض الشاشة */
+        margin-left: 201px;
+        
+        margin-top: -45px;
+        transform: none;      /* نلغي الترانزفورم تماماً عشان الزوايا تظبط */
+        border-width: 2px;    /* نصغر البرواز عشان مياكلش مساحة */
+        aspect-ratio: 4 / 3;  /* نخليه أقرب للمربع عشان يناسب مسكة الموبايل */
+    }
+    .header{
+width: 95%;           /* خليه يملأ 95% من الشاشة عشان يبقى "كبير" وواضح */
+        margin: 0 auto;       /* توسيطه في النص */
+        padding: 20px 0;      /* زيادة المساحة الداخلية عشان يبان أضخم */
+        font-size: 1.2rem;
+
+    }
+.ham{
+width: 100%;
+
+
+
+}
+.goc-main-nav{
+
+
+}
+    .before{
+transform: translate(-80px,-130px);
+
+margin-bottom: 100px;
+margin-left: -100px;
+width: 300px;
+    }
+    .seemore{
+width: 300px;
+font-size: 10px;
+
+    }
+.wellcom{
+transform: translate(280px, -45px);
+
+
+}
+.welcome-text-right {
+    display: inline-block; /* هذا السطر هو المفتاح */
+    width: 150px;          /* العرض الذي تريده */
+    height: 50px;          /* الطول الذي تريده */
+    line-height: 30px;     /* لتوسيط النص رأسياً داخل الطول الجديد */
+    text-align: center;    /* لتوسيط النص أفقياً */
+    
+    /* باقي تنسيقاتك السابقة */
+    background-color: #c0a058;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text-muted);
+}
+.videoscontainer video{
+width: 80%;
+
+
+
+
+}
+.train{
+
+  width: 70%;
+}
+.header {
+width: 80%;
+
+
+}
+
+}
+.ham{
+background-color: rgba(218, 165, 32, 0.277);
+border-radius: 20px;
+color: red;
+width: 50%;
+margin-right: auto;
+margin-left: auto;
+
+}
+/* حاوية الصور الأساسية */
+/* حاوية الصور الأساسية */
+.photo-grid {
+    display: grid;
+    /* نجعل الأعمدة أعرض قليلاً لأن الصور عريضة */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+    gap: 25px;
+    padding: 30px;
+    background-color: #f4f4f4; /* خلفية فاتحة للحاوية */
+}
+
+/* تنسيق الإطار الخاص بكل صورة */
+.photo-item {
+    position: relative;
+    overflow: hidden; /* لإخفاء الزيادات عند عمل زووم */
+    border-radius: 12px; /* زوايا دائرية */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1); /* ظل هادئ */
+    background-color: #fff; /* خلفية بيضاء للإطار */
+    border: 1px solid #eaeaea;
+    transition: all 0.4s ease;
+    
+    /* لضمان تناسق العرض للطول، يمكنك تحديد نسبة ثابتة للإطار 
+       (مثلاً 16:9)، أو تركها تلقائية. لصورك العريضة، سأستخدم نسبة عريضة */
+    aspect-ratio: 16 / 9; /* هذا سيجعل الكادر عريضاً وموحداً */
+    display: flex; /* لمركزية الصورة داخل الكادر */
+    justify-content: center;
+    align-items: center;
+}
+
+/* تنسيق الصورة نفسها (السر هنا) */
+.photo-item img {
+    max-width: 100%; /* العرض لا يتجاوز الكادر */
+    max-height: 100%; /* الطول لا يتجاوز الكادر */
+    width: auto; /* يحافظ على التناسب الطبيعي */
+    height: auto; /* يحافظ على التناسب الطبيعي */
+    object-fit: contain; /* هذا الأمر يضمن ظهور الصورة كاملة */
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+/* تأثير "خطف العين" المطور للصور العريضة */
+.photo-item:hover {
+    transform: translateY(-5px) scale(1.02); /* رفع وتكبير خفيف للكادر ككل */
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15); /* زيادة الظل */
+    border-color: #bbb;
+}
+
+.photo-item:hover img {
+    /* زووم داخلي هادئ للصورة نفسها دون قصها */
+    transform: scale(1.05); 
+    filter: brightness(1.05); /* زيادة الإضاءة قليلاً */
+}
