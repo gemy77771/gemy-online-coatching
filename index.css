@@ -359,6 +359,9 @@ body {
     position: relative;
     overflow: hidden;
     direction: rtl;
+    
+    max-height: fit-content;
+
 }
 
 /* تأثير لمعة خفيفة ورا الكارت */
@@ -417,6 +420,7 @@ body {
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
     box-shadow: 0 5px 20px rgba(192, 160, 88, 0.4);
+    
 }
 
 .cta-button:hover {
@@ -584,7 +588,26 @@ width: 100%;
 
 
 }
+body{
+background-image: url(c16466cd-02ef-479c-af70-739e5550673d.jfif);
+
+}
 .goc-main-nav{
+
+
+}
+.offer-container{
+width: 100%;
+height: 100;
+
+}
+.offer-container h1{
+font-size: 2px;
+
+
+}
+.press{
+width: 70%;
 
 
 }
@@ -697,4 +720,38 @@ margin-left: auto;
     /* زووم داخلي هادئ للصورة نفسها دون قصها */
     transform: scale(1.05); 
     filter: brightness(1.05); /* زيادة الإضاءة قليلاً */
+}
+@media (max-width: 600px) {
+
+    .offer-container {
+        width: 95%;
+        padding: 15px;
+        margin: 20px auto;
+        border-radius: 15px;
+    }
+
+    .offer-title {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .offer-surprise {
+        font-size: 16px;
+    }
+
+    .free-badge {
+        font-size: 14px;
+        padding: 2px 8px;
+    }
+
+    .offer-summary {
+        font-size: 16px;
+        margin: 10px 0;
+    }
+
+    .cta-button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
 }
