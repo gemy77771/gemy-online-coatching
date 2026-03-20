@@ -570,7 +570,7 @@ background-color: rgb(128, 128, 128);
         width: 50%;           /* ياخد معظم عرض الشاشة */
         margin-left: 201px;
         
-        margin-top: -45px;
+        margin-top: -30px;
         transform: none;      /* نلغي الترانزفورم تماماً عشان الزوايا تظبط */
         border-width: 2px;    /* نصغر البرواز عشان مياكلش مساحة */
         aspect-ratio: 4 / 3;  /* نخليه أقرب للمربع عشان يناسب مسكة الموبايل */
