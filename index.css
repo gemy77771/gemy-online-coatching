@@ -352,7 +352,7 @@ body {
     border-radius: 25px;
     padding: 40px;
     width: 90%;
-    max-width: 600px;
+    max-width: 100%;
     margin: 40px auto;
     text-align: center;
     box-shadow: 0 15px 40px rgba(0,0,0,0.6);
@@ -584,7 +584,7 @@ width: 95%;           /* خليه يملأ 95% من الشاشة عشان يبق
     }
 .ham{
 width: 100%;
-
+font-size: 100%;
 
 
 }
@@ -596,11 +596,19 @@ background-image: url(c16466cd-02ef-479c-af70-739e5550673d.jfif);
 
 
 }
-.offer-container{
-width: 100%;
-height: 100;
+.offer-container {
+    width: 90%;          /* عرض أصغر */
+    max-width: 350px;    /* يفضل ثابت */
+    height: auto;        /* يخليه على حسب المحتوى */
+    padding: 10px;       /* مسافة داخلية */
+  }
 
-}
+  .offer-title {
+    font-size: 1px;     /* تصغير الخط */
+    line-height: 1;
+    
+  }
+
 .offer-container h1{
 font-size: 2px;
 
